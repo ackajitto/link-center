@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>รวมเว็บแอปและเครื่องมือออนไลน์</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Noto Sans Thai',sans-serif;
+}
+
+body{
+background:
+linear-gradient(
+135deg,
+#eef9ff,
+#ffffff,
+#fff8e8
+);
+min-height:100vh;
+padding:20px;
+overflow-x:hidden;
+}
+
+.container{
+max-width:480px;
+margin:auto;
+}
+
+.hero{
+text-align:center;
+padding:50px 20px 35px;
+position:relative;
+}
+
+.crystal{
+font-size:90px;
+animation:float 4s ease-in-out infinite;
+filter:drop-shadow(0 0 25px rgba(120,200,255,.45));
+}
+
+@keyframes float{
+0%,100%{
+transform:translateY(0);
+}
+50%{
+transform:translateY(-12px);
+}
+}
+
+.hero h1{
+font-size:1.8rem;
+font-weight:700;
+color:#1f2937;
+margin-top:10px;
+}
+
+.hero p{
+margin-top:10px;
+color:#64748b;
+line-height:1.6;
+font-size:.95rem;
+}
+
+.card{
+display:flex;
+align-items:center;
+gap:18px;
+
+padding:18px;
+margin-bottom:18px;
+
+background:rgba(255,255,255,.65);
+
+backdrop-filter:blur(16px);
+
+border:1px solid rgba(255,255,255,.5);
+
+border-radius:24px;
+
+text-decoration:none;
+
+box-shadow:
+0 10px 30px rgba(0,0,0,.06);
+
+transition:.3s;
+}
+
+.card:hover{
+transform:translateY(-4px);
+box-shadow:
+0 18px 40px rgba(0,0,0,.12);
+}
+
+.icon{
+font-size:58px;
+flex-shrink:0;
+}
+
+.content{
+flex:1;
+}
+
+.content h2{
+font-size:1.08rem;
+color:#111827;
+margin-bottom:6px;
+}
+
+.content p{
+font-size:.9rem;
+color:#64748b;
+line-height:1.5;
+}
+
+.arrow{
+font-size:26px;
+color:#d4af37;
+font-weight:bold;
+}
+
+.section-title{
+margin:25px 0 18px;
+padding-left:8px;
+font-size:1rem;
+font-weight:700;
+color:#475569;
+}
+
+.footer{
+margin-top:40px;
+text-align:center;
+color:#94a3b8;
+font-size:.85rem;
+padding-bottom:30px;
+}
+
+.socials{
+display:flex;
+justify-content:center;
+gap:14px;
+margin-top:15px;
+flex-wrap:wrap;
+}
+
+.social-btn{
+width:52px;
+height:52px;
+border-radius:50%;
+
+background:rgba(255,255,255,.7);
+
+backdrop-filter:blur(10px);
+
+display:flex;
+align-items:center;
+justify-content:center;
+
+text-decoration:none;
+
+font-size:24px;
+
+box-shadow:
+0 8px 20px rgba(0,0,0,.08);
+
+transition:.3s;
+}
+
+.social-btn:hover{
+transform:translateY(-3px);
+}
+
+.glow{
+position:fixed;
+width:300px;
+height:300px;
+background:#b8e6ff;
+filter:blur(120px);
+opacity:.25;
+top:-100px;
+right:-100px;
+z-index:-1;
+}
+
+.glow2{
+position:fixed;
+width:250px;
+height:250px;
+background:#ffe8a3;
+filter:blur(120px);
+opacity:.2;
+bottom:-100px;
+left:-100px;
+z-index:-1;
+}
+</style>
+</head>
+
+<body>
+
+<div class="glow"></div>
+<div class="glow2"></div>
+
+<div class="container">
+
+<div class="hero">
+
+<div class="crystal">✨</div>
+
+<h1>รวมเว็บแอปและเครื่องมือออนไลน์</h1>
+
+<p>
+เพื่อการปฏิบัติธรรม<br>
+และการใช้งานในชีวิตประจำวัน
+</p>
+
+</div>
+
+<div class="section-title">
+🧘 เว็บแอปธรรมะ
+</div>
+
+<a class="card"
+href="https://ackajitto.github.io/meditation-timer/"
+target="_blank">
+
+<div class="icon">🧘</div>
+
+<div class="content">
+<h2>จับเวลานั่งสมาธิ</h2>
+<p>
+บันทึกเวลาและติดตามการนั่งสมาธิ
+ใช้งานง่ายบนมือถือ
+</p>
+</div>
+
+<div class="arrow">→</div>
+
+</a>
+
+<a class="card"
+href="https://ackajitto.github.io/dharma_prayer/"
+target="_blank">
+
+<div class="icon">📖</div>
+
+<div class="content">
+<h2>บทสวดมนต์</h2>
+<p>
+รวมบทสวดมนต์และบทแผ่เมตตา
+เปิดอ่านได้ทุกที่
+</p>
+</div>
+
+<div class="arrow">→</div>
+
+</a>
+
+<a class="card"
+href="https://ackajitto.github.io/lamp-days/"
+target="_blank">
+
+<div class="icon">🔥</div>
+
+<div class="content">
+<h2>นับวันถวายประทีป</h2>
+<p>
+ติดตามจำนวนวันถวายประทีป
+อย่างต่อเนื่อง
+</p>
+</div>
+
+<div class="arrow">→</div>
+
+</a>
+
+<div class="section-title">
+🛠️ เครื่องมือออนไลน์
+</div>
+
+<a class="card"
+href="https://ackajitto.github.io/pdf-to-image-hd/"
+target="_blank">
+
+<div class="icon">🖼️</div>
+
+<div class="content">
+<h2>PDF to Image HD</h2>
+<p>
+แปลงไฟล์ PDF
+เป็นรูปภาพคุณภาพสูง
+</p>
+</div>
+
+<div class="arrow">→</div>
+
+</a>
+
+<div class="section-title">
+🌐 ช่องทางอื่น ๆ
+</div>
+
+<div class="socials">
+
+<a class="social-btn" href="#">
+📘
+</a>
+
+<a class="social-btn" href="#">
+▶️
+</a>
+
+<a class="social-btn" href="#">
+🎵
+</a>
+
+<a class="social-btn" href="#">
+💬
+</a>
+
+</div>
+
+<div class="footer">
+✨ สร้างด้วยความตั้งใจเพื่อแบ่งปันประโยชน์แก่ทุกคน ✨
+</div>
+
+</div>
+
+</body>
+</html>
