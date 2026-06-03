@@ -6,150 +6,102 @@
 
 <title>รวมเว็บแอปและเครื่องมือออนไลน์</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Noto+Sans+Thai:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
-/* 🎨 ระบบสีและธีม (รองรับทั้ง Light และ Dark Mode) */
-:root {
-  --bg-gradient: linear-gradient(135deg, #f4f7fa 0%, #ffffff 50%, #fff9f0 100%);
-  --text-main: #1e293b;
-  --text-sub: #64748b;
-  --card-bg: rgba(255, 255, 255, 0.65);
-  --card-border: rgba(255, 255, 255, 0.6);
-  --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.04), 0 1px 3px rgba(0, 0, 0, 0.02);
-  --card-shadow-hover: 0 20px 40px rgba(148, 163, 184, 0.18);
-  --icon-bg: rgba(255, 255, 255, 0.8);
-  --arrow-color: #d4af37;
-  --glow-1: #cceeff;
-  --glow-2: #ffeaa7;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg-gradient: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
-    --text-main: #f8fafc;
-    --text-sub: #94a3b8;
-    --card-bg: rgba(30, 41, 59, 0.7);
-    --card-border: rgba(255, 255, 255, 0.08);
-    --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-    --card-shadow-hover: 0 20px 40px rgba(0, 0, 0, 0.4);
-    --icon-bg: rgba(255, 255, 255, 0.1);
-    --arrow-color: #fbbf24;
-    --glow-1: #1e3a8a;
-    --glow-2: #78350f;
-  }
-}
-
 *{
 margin:0;
 padding:0;
 box-sizing:border-box;
-font-family: 'Inter', 'Noto Sans Thai', sans-serif;
--webkit-font-smoothing: antialiased;
+font-family:'Noto Sans Thai',sans-serif;
 }
 
 body{
-background: var(--bg-gradient);
+background:
+linear-gradient(
+135deg,
+#eef9ff,
+#ffffff,
+#fff8e8
+);
 min-height:100vh;
-padding: 24px 20px;
+padding:20px;
 overflow-x:hidden;
-color: var(--text-main);
-transition: background 0.3s ease;
 }
 
 .container{
-max-width:460px;
+max-width:480px;
 margin:auto;
 }
 
-/* ✨ Hero Section */
 .hero{
 text-align:center;
-padding: 40px 20px 25px;
+padding:50px 20px 35px;
 position:relative;
 }
 
 .crystal{
-font-size:75px;
-line-height: 1;
-margin-bottom: 15px;
-animation: float 5s cubic-bezier(0.45, 0, 0.55, 1) infinite;
-filter: drop-shadow(0 10px 20px rgba(212, 175, 55, 0.3));
+font-size:90px;
+animation:float 4s ease-in-out infinite;
+filter:drop-shadow(0 0 25px rgba(120,200,255,.45));
 }
 
 @keyframes float{
-0%, 100% { transform: translateY(0) scale(1); }
-50% { transform: translateY(-10px) scale(1.03); }
+0%,100%{
+transform:translateY(0);
+}
+50%{
+transform:translateY(-12px);
+}
 }
 
 .hero h1{
-font-size:1.65rem;
+font-size:1.8rem;
 font-weight:700;
-color: var(--text-main);
-letter-spacing: -0.025em;
-line-height: 1.3;
+color:#1f2937;
+margin-top:10px;
 }
 
 .hero p{
-margin-top:12px;
-color: var(--text-sub);
+margin-top:10px;
+color:#64748b;
 line-height:1.6;
 font-size:.95rem;
-font-weight: 400;
 }
 
-/* 📂 Section Title */
-.section-title{
-margin: 30px 0 14px;
-padding-left: 6px;
-font-size:0.9rem;
-font-weight:700;
-color: var(--text-sub);
-letter-spacing: 0.05em;
-text-transform: uppercase;
-opacity: 0.8;
-}
-
-/* 🃏 Premium Cards */
 .card{
 display:flex;
 align-items:center;
-gap:16px;
-padding:16px;
-margin-bottom:14px;
-background: var(--card-bg);
-backdrop-filter: blur(20px);
--webkit-backdrop-filter: blur(20px);
-border: 1px solid var(--card-border);
-border-radius:20px;
+gap:18px;
+
+padding:18px;
+margin-bottom:18px;
+
+background:rgba(255,255,255,.65);
+
+backdrop-filter:blur(16px);
+
+border:1px solid rgba(255,255,255,.5);
+
+border-radius:24px;
+
 text-decoration:none;
-box-shadow: var(--card-shadow);
-transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+
+box-shadow:
+0 10px 30px rgba(0,0,0,.06);
+
+transition:.3s;
 }
 
 .card:hover{
-transform: translateY(-4px) scale(1.015);
-box-shadow: var(--card-shadow-hover);
-border-color: rgba(214, 175, 87, 0.3);
+transform:translateY(-4px);
+box-shadow:
+0 18px 40px rgba(0,0,0,.12);
 }
 
-/* ปรับดีไซน์วงกลมล้อมรอบไอคอน */
 .icon{
-font-size:28px;
-width: 56px;
-height: 56px;
-background: var(--icon-bg);
-border-radius: 16px;
-display: flex;
-align-items: center;
-justify-content: center;
+font-size:58px;
 flex-shrink:0;
-box-shadow: 0 4px 12px rgba(0,0,0,0.03);
-transition: transform 0.3s ease;
-}
-
-.card:hover .icon {
-transform: scale(1.08) rotate(3deg);
 }
 
 .content{
@@ -157,100 +109,96 @@ flex:1;
 }
 
 .content h2{
-font-size:1.05rem;
-font-weight: 600;
-color: var(--text-main);
-margin-bottom:4px;
+font-size:1.08rem;
+color:#111827;
+margin-bottom:6px;
 }
 
 .content p{
-font-size:.88rem;
-color: var(--text-sub);
-line-height:1.45;
+font-size:.9rem;
+color:#64748b;
+line-height:1.5;
 }
 
-/* ลูกศรขยับได้เมื่อ Hover */
 .arrow{
-font-size:20px;
-color: var(--arrow-color);
+font-size:26px;
+color:#d4af37;
 font-weight:bold;
-transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-padding-right: 4px;
 }
 
-.card:hover .arrow{
-transform: translateX(6px);
+.section-title{
+margin:25px 0 18px;
+padding-left:8px;
+font-size:1rem;
+font-weight:700;
+color:#475569;
 }
 
-/* 🌐 Social Buttons */
+.footer{
+margin-top:40px;
+text-align:center;
+color:#94a3b8;
+font-size:.85rem;
+padding-bottom:30px;
+}
+
 .socials{
 display:flex;
 justify-content:center;
-gap:16px;
-margin-top:20px;
+gap:14px;
+margin-top:15px;
+flex-wrap:wrap;
 }
 
 .social-btn{
-width:48px;
-height:48px;
-border-radius:14px;
-background: var(--card-bg);
-backdrop-filter: blur(10px);
--webkit-backdrop-filter: blur(10px);
-border: 1px solid var(--card-border);
+width:52px;
+height:52px;
+border-radius:50%;
+
+background:rgba(255,255,255,.7);
+
+backdrop-filter:blur(10px);
+
 display:flex;
 align-items:center;
 justify-content:center;
+
 text-decoration:none;
-font-size:20px;
-box-shadow: var(--card-shadow);
-transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+
+font-size:24px;
+
+box-shadow:
+0 8px 20px rgba(0,0,0,.08);
+
+transition:.3s;
 }
 
 .social-btn:hover{
-transform: translateY(-3px) scale(1.08);
-box-shadow: var(--card-shadow-hover);
-background: var(--icon-bg);
+transform:translateY(-3px);
 }
 
-/* 📝 Footer */
-.footer{
-margin-top:50px;
-text-align:center;
-color: var(--text-sub);
-font-size:.8rem;
-padding-bottom:4px;
-opacity: 0.7;
-letter-spacing: 0.02em;
-}
-
-/* 🔮 Ambient Glow Backgrounds */
 .glow{
 position:fixed;
-width:400px;
-height:400px;
-background: var(--glow-1);
-filter: blur(130px);
-opacity:.35;
-top:-150px;
-right:-150px;
+width:300px;
+height:300px;
+background:#b8e6ff;
+filter:blur(120px);
+opacity:.25;
+top:-100px;
+right:-100px;
 z-index:-1;
-pointer-events: none;
-transition: background 0.5s ease;
 }
 
 .glow2{
 position:fixed;
-width:350px;
-height:350px;
-background: var(--glow-2);
-filter: blur(130px);
-opacity:.25;
-bottom:-150px;
-left:-150px;
+width:250px;
+height:250px;
+background:#ffe8a3;
+filter:blur(120px);
+opacity:.2;
+bottom:-100px;
+left:-100px;
 z-index:-1;
-pointer-events: none;
-transition: background 0.5s ease;
 }
 </style>
 </head>
@@ -263,58 +211,120 @@ transition: background 0.5s ease;
 <div class="container">
 
 <div class="hero">
+
 <div class="crystal">✨</div>
+
 <h1>รวมเว็บแอปและเครื่องมือออนไลน์</h1>
-<p>เพื่อการปฏิบัติธรรม และการใช้งานในชีวิตประจำวัน</p>
+
+<p>
+เพื่อการปฏิบัติธรรม<br>
+และการใช้งานในชีวิตประจำวัน
+</p>
+
 </div>
 
-<div class="section-title">🧘 เว็บแอปธรรมะ</div>
+<div class="section-title">
+🧘 เว็บแอปธรรมะ
+</div>
 
-<a class="card" href="https://ackajitto.github.io/meditation-timer/" target="_blank">
+<a class="card"
+href="https://ackajitto.github.io/meditation-timer/"
+target="_blank">
+
 <div class="icon">🧘</div>
+
 <div class="content">
 <h2>จับเวลานั่งสมาธิ</h2>
-<p>บันทึกเวลาและติดตามการนั่งสมาธิ ใช้งานง่ายบนมือถือ</p>
+<p>
+บันทึกเวลาและติดตามการนั่งสมาธิ
+ใช้งานง่ายบนมือถือ
+</p>
 </div>
+
 <div class="arrow">→</div>
+
 </a>
 
-<a class="card" href="https://ackajitto.github.io/dharma_prayer/" target="_blank">
+<a class="card"
+href="https://ackajitto.github.io/dharma_prayer/"
+target="_blank">
+
 <div class="icon">📖</div>
+
 <div class="content">
 <h2>บทสวดมนต์</h2>
-<p>รวมบทสวดมนต์และบทแผ่เมตตา เปิดอ่านได้ทุกที่</p>
+<p>
+รวมบทสวดมนต์และบทแผ่เมตตา
+เปิดอ่านได้ทุกที่
+</p>
 </div>
+
 <div class="arrow">→</div>
+
 </a>
 
-<a class="card" href="https://ackajitto.github.io/lamp-days/" target="_blank">
+<a class="card"
+href="https://ackajitto.github.io/lamp-days/"
+target="_blank">
+
 <div class="icon">🔥</div>
+
 <div class="content">
 <h2>นับวันถวายประทีป</h2>
-<p>ติดตามจำนวนวันถวายประทีป อย่างต่อเนื่อง</p>
+<p>
+ติดตามจำนวนวันถวายประทีป
+อย่างต่อเนื่อง
+</p>
 </div>
+
 <div class="arrow">→</div>
+
 </a>
 
-<div class="section-title">🛠️ เครื่องมือออนไลน์</div>
+<div class="section-title">
+🛠️ เครื่องมือออนไลน์
+</div>
 
-<a class="card" href="https://ackajitto.github.io/pdf-to-image-hd/" target="_blank">
+<a class="card"
+href="https://ackajitto.github.io/pdf-to-image-hd/"
+target="_blank">
+
 <div class="icon">🖼️</div>
+
 <div class="content">
 <h2>PDF to Image HD</h2>
-<p>แปลงไฟล์ PDF เป็นรูปภาพคุณภาพสูง</p>
+<p>
+แปลงไฟล์ PDF
+เป็นรูปภาพคุณภาพสูง
+</p>
 </div>
+
 <div class="arrow">→</div>
+
 </a>
 
-<div class="section-title">🌐 ช่องทางอื่น ๆ</div>
+<div class="section-title">
+🌐 ช่องทางอื่น ๆ
+</div>
 
 <div class="socials">
-<a class="social-btn" href="#">📘</a>
-<a class="social-btn" href="#">▶️</a>
-<a class="social-btn" href="#">🎵</a>
-<a class="social-btn" href="#">💬</a>
+
+<a class="social-btn" href="#">
+📘
+</a>
+
+<a class="social-btn" href="#">
+▶️
+</a>
+
+<a class="social-btn" href="#">
+🎵
+</a>
+
+<a class="social-btn" href="#">
+💬
+</a>
+
 </div>
 
 <div class="footer">
