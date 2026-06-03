@@ -1,337 +1,356 @@
 <!DOCTYPE html>
 <html lang="th">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>รวมเว็บแอปและเครื่องมือออนไลน์</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-<title>รวมเว็บแอปและเครื่องมือออนไลน์</title>
+    <style>
+        /* จัดตั้งค่าตัวแปร (CSS Variables) สำหรับธีมสว่างและธีมมืด */
+        :root {
+            --bg-gradient: linear-gradient(135deg, #eef9ff, #ffffff, #fff8e8);
+            --text-main: #1f2937;
+            --text-muted: #64748b;
+            --card-bg: rgba(255, 255, 255, 0.65);
+            --card-border: rgba(255, 255, 255, 0.5);
+            --shadow-sm: 0 10px 30px rgba(0, 0, 0, 0.06);
+            --shadow-md: 0 18px 40px rgba(0, 0, 0, 0.12);
+            --accent-color: #d4af37;
+            --toggle-bg: rgba(255, 255, 255, 0.8);
+            --toggle-border: rgba(0, 0, 0, 0.1);
+        }
 
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+        /* ธีมมืด (Dark Mode) จะเปิดใช้งานเมื่อใส่คลาส .dark-theme ที่ body */
+        body.dark-theme {
+            --bg-gradient: linear-gradient(135deg, #0f172a, #1e293b, #111827);
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --card-bg: rgba(30, 41, 59, 0.7);
+            --card-border: rgba(255, 255, 255, 0.08);
+            --shadow-sm: 0 10px 30px rgba(0, 0, 0, 0.3);
+            --shadow-md: 0 18px 40px rgba(0, 0, 0, 0.5);
+            --toggle-bg: rgba(30, 41, 59, 0.8);
+            --toggle-border: rgba(255, 255, 255, 0.1);
+        }
 
-<style>
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:'Noto Sans Thai',sans-serif;
-}
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Noto Sans Thai', sans-serif;
+            transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+        }
 
-body{
-background:
-linear-gradient(
-135deg,
-#eef9ff,
-#ffffff,
-#fff8e8
-);
-min-height:100vh;
-padding:20px;
-overflow-x:hidden;
-}
+        body {
+            background: var(--bg-gradient);
+            min-height: 100vh;
+            padding: 20px;
+            overflow-x: hidden;
+            color: var(--text-main);
+        }
 
-.container{
-max-width:480px;
-margin:auto;
-}
+        /* จัดหน้าให้อยู่กึ่งกลางจออย่างสวยงามทั้งมือถือและเดสก์ท็อป */
+        .container {
+            max-width: 480px;
+            margin: auto;
+            position: relative;
+        }
 
-.hero{
-text-align:center;
-padding:50px 20px 35px;
-position:relative;
-}
+        /* ปุ่มสลับโหมดลอยตัวที่มุมขวาบน */
+        .theme-toggle-btn {
+            position: absolute;
+            top: 20px;
+            right: 10px;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            border: 1px solid var(--card-border);
+            background: var(--card-bg);
+            box-shadow: var(--shadow-sm);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            z-index: 10;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
 
-.crystal{
-font-size:90px;
-animation:float 4s ease-in-out infinite;
-filter:drop-shadow(0 0 25px rgba(120,200,255,.45));
-}
+        .theme-toggle-btn:hover {
+            transform: scale(1.05);
+        }
 
-@keyframes float{
-0%,100%{
-transform:translateY(0);
-}
-50%{
-transform:translateY(-12px);
-}
-}
+        .hero {
+            text-align: center;
+            padding: 50px 20px 35px;
+            position: relative;
+        }
 
-.hero h1{
-font-size:1.8rem;
-font-weight:700;
-color:#1f2937;
-margin-top:10px;
-}
+        .crystal {
+            font-size: 90px;
+            animation: float 4s ease-in-out infinite;
+            filter: drop-shadow(0 0 25px rgba(120, 200, 255, 0.45));
+            display: inline-block;
+        }
 
-.hero p{
-margin-top:10px;
-color:#64748b;
-line-height:1.6;
-font-size:.95rem;
-}
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-12px); }
+        }
 
-.card{
-display:flex;
-align-items:center;
-gap:18px;
+        .hero h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--text-main);
+            margin-top: 10px;
+        }
 
-padding:18px;
-margin-bottom:18px;
+        .hero p {
+            margin-top: 10px;
+            color: var(--text-muted);
+            line-height: 1.6;
+            font-size: .95rem;
+        }
 
-background:rgba(255,255,255,.65);
+        .card {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            padding: 18px;
+            margin-bottom: 18px;
+            background: var(--card-bg);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--card-border);
+            border-radius: 24px;
+            text-decoration: none;
+            box-shadow: var(--shadow-sm);
+            transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+        }
 
-backdrop-filter:blur(16px);
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+        }
 
-border:1px solid rgba(255,255,255,.5);
+        .icon {
+            font-size: 58px;
+            flex-shrink: 0;
+            user-select: none;
+        }
 
-border-radius:24px;
+        .content {
+            flex: 1;
+        }
 
-text-decoration:none;
+        .content h2 {
+            font-size: 1.08rem;
+            color: var(--text-main);
+            margin-bottom: 6px;
+        }
 
-box-shadow:
-0 10px 30px rgba(0,0,0,.06);
+        .content p {
+            font-size: .9rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
 
-transition:.3s;
-}
+        .arrow {
+            font-size: 26px;
+            color: var(--accent-color);
+            font-weight: bold;
+            transition: transform 0.2s;
+        }
 
-.card:hover{
-transform:translateY(-4px);
-box-shadow:
-0 18px 40px rgba(0,0,0,.12);
-}
+        .card:hover .arrow {
+            transform: translateX(4px);
+        }
 
-.icon{
-font-size:58px;
-flex-shrink:0;
-}
+        .section-title {
+            margin: 25px 0 18px;
+            padding-left: 8px;
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--text-muted);
+            letter-spacing: 0.5px;
+        }
 
-.content{
-flex:1;
-}
+        .footer {
+            margin-top: 40px;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: .85rem;
+            padding-bottom: 30px;
+        }
 
-.content h2{
-font-size:1.08rem;
-color:#111827;
-margin-bottom:6px;
-}
+        .socials {
+            display: flex;
+            justify-content: center;
+            gap: 14px;
+            margin-top: 15px;
+            flex-wrap: wrap;
+        }
 
-.content p{
-font-size:.9rem;
-color:#64748b;
-line-height:1.5;
-}
+        .social-btn {
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid var(--card-border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            font-size: 24px;
+            box-shadow: var(--shadow-sm);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
 
-.arrow{
-font-size:26px;
-color:#d4af37;
-font-weight:bold;
-}
+        .social-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-md);
+        }
 
-.section-title{
-margin:25px 0 18px;
-padding-left:8px;
-font-size:1rem;
-font-weight:700;
-color:#475569;
-}
+        /* แสง Glow ด้านหลังสำหรับการสร้างมิติ */
+        .glow {
+            position: fixed;
+            width: 350px;
+            height: 350px;
+            background: #b8e6ff;
+            filter: blur(130px);
+            opacity: .25;
+            top: -100px;
+            right: -100px;
+            z-index: -1;
+            pointer-events: none;
+        }
 
-.footer{
-margin-top:40px;
-text-align:center;
-color:#94a3b8;
-font-size:.85rem;
-padding-bottom:30px;
-}
-
-.socials{
-display:flex;
-justify-content:center;
-gap:14px;
-margin-top:15px;
-flex-wrap:wrap;
-}
-
-.social-btn{
-width:52px;
-height:52px;
-border-radius:50%;
-
-background:rgba(255,255,255,.7);
-
-backdrop-filter:blur(10px);
-
-display:flex;
-align-items:center;
-justify-content:center;
-
-text-decoration:none;
-
-font-size:24px;
-
-box-shadow:
-0 8px 20px rgba(0,0,0,.08);
-
-transition:.3s;
-}
-
-.social-btn:hover{
-transform:translateY(-3px);
-}
-
-.glow{
-position:fixed;
-width:300px;
-height:300px;
-background:#b8e6ff;
-filter:blur(120px);
-opacity:.25;
-top:-100px;
-right:-100px;
-z-index:-1;
-}
-
-.glow2{
-position:fixed;
-width:250px;
-height:250px;
-background:#ffe8a3;
-filter:blur(120px);
-opacity:.2;
-bottom:-100px;
-left:-100px;
-z-index:-1;
-}
-</style>
+        .glow2 {
+            position: fixed;
+            width: 300px;
+            height: 300px;
+            background: #ffe8a3;
+            filter: blur(120px);
+            opacity: .2;
+            bottom: -100px;
+            left: -100px;
+            z-index: -1;
+            pointer-events: none;
+        }
+    </style>
 </head>
-
 <body>
 
-<div class="glow"></div>
-<div class="glow2"></div>
+    <!-- แสงเรืองรองฉากหลัง -->
+    <div class="glow" aria-hidden="true"></div>
+    <div class="glow2" aria-hidden="true"></div>
 
-<div class="container">
+    <div class="container">
+        
+        <!-- ปุ่มสลับโหมด สว่าง / มืด -->
+        <button class="theme-toggle-btn" id="themeToggle" aria-label="สลับโหมดมืดและสว่าง">
+            ☀️
+        </button>
 
-<div class="hero">
+        <!-- ส่วนต้อนรับ (Hero Section) -->
+        <header class="hero">
+            <div class="crystal" role="img" aria-label="ประกายระยิบระยับ">✨</div>
+            <h1>รวมเว็บแอปและเครื่องมือออนไลน์</h1>
+            <p>เพื่อการปฏิบัติธรรม<br>และการใช้งานในชีวิตประจำวัน</p>
+        </header>
 
-<div class="crystal">✨</div>
+        <main>
+            <!-- กลุ่มแอปธรรมะ -->
+            <section aria-labelledby="dhamma-apps-title">
+                <h2 class="section-title" id="dhamma-apps-title">🧘 เว็บแอปธรรมะ</h2>
 
-<h1>รวมเว็บแอปและเครื่องมือออนไลน์</h1>
+                <a class="card" href="https://ackajitto.github.io/meditation-timer/" target="_blank" rel="noopener">
+                    <div class="icon" role="img" aria-label="แอปสมาธิ">🧘</div>
+                    <div class="content">
+                        <h2>จับเวลานั่งสมาธิ</h2>
+                        <p>บันทึกเวลาและติดตามการนั่งสมาธิ ใช้งานง่ายบนมือถือ</p>
+                    </div>
+                    <div class="arrow" aria-hidden="true">→</div>
+                </a>
 
-<p>
-เพื่อการปฏิบัติธรรม<br>
-และการใช้งานในชีวิตประจำวัน
-</p>
+                <a class="card" href="https://ackajitto.github.io/dharma_prayer/" target="_blank" rel="noopener">
+                    <div class="icon" role="img" aria-label="แอปบทสวดมนต์">📖</div>
+                    <div class="content">
+                        <h2>บทสวดมนต์</h2>
+                        <p>รวมบทสวดมนต์และบทแผ่เมตตา เปิดอ่านได้ทุกที่</p>
+                    </div>
+                    <div class="arrow" aria-hidden="true">→</div>
+                </a>
 
-</div>
+                <a class="card" href="https://ackajitto.github.io/lamp-days/" target="_blank" rel="noopener">
+                    <div class="icon" role="img" aria-label="แอปวันถวายประทีป">🔥</div>
+                    <div class="content">
+                        <h2>นับวันถวายประทีป</h2>
+                        <p>ติดตามจำนวนวันถวายประทีป อย่างต่อเนื่อง</p>
+                    </div>
+                    <div class="arrow" aria-hidden="true">→</div>
+                </a>
+            </section>
 
-<div class="section-title">
-🧘 เว็บแอปธรรมะ
-</div>
+            <!-- กลุ่มเครื่องมือ -->
+            <section aria-labelledby="tools-title">
+                <h2 class="section-title" id="tools-title">🛠️ เครื่องมือออนไลน์</h2>
 
-<a class="card"
-href="https://ackajitto.github.io/meditation-timer/"
-target="_blank">
+                <a class="card" href="https://ackajitto.github.io/pdf-to-image-hd/" target="_blank" rel="noopener">
+                    <div class="icon" role="img" aria-label="เครื่องมือแปลงไฟล์">🖼️</div>
+                    <div class="content">
+                        <h2>PDF to Image HD</h2>
+                        <p>แปลงไฟล์ PDF เป็นรูปภาพคุณภาพสูง</p>
+                    </div>
+                    <div class="arrow" aria-hidden="true">→</div>
+                </a>
+            </section>
 
-<div class="icon">🧘</div>
+            <!-- ลิงก์สังคมออนไลน์ -->
+            <section aria-labelledby="socials-title">
+                <h2 class="section-title" id="socials-title">🌐 ช่องทางอื่น ๆ</h2>
+                <div class="socials">
+                    <a class="social-btn" href="#" aria-label="Facebook">📘</a>
+                    <a class="social-btn" href="#" aria-label="YouTube">▶️</a>
+                    <a class="social-btn" href="#" aria-label="TikTok">🎵</a>
+                    <a class="social-btn" href="#" aria-label="Line">💬</a>
+                </div>
+            </section>
+        </main>
 
-<div class="content">
-<h2>จับเวลานั่งสมาธิ</h2>
-<p>
-บันทึกเวลาและติดตามการนั่งสมาธิ
-ใช้งานง่ายบนมือถือ
-</p>
-</div>
+        <!-- ท้ายเพจ -->
+        <footer class="footer">
+            <p>✨ สร้างด้วยความตั้งใจเพื่อแบ่งปันประโยชน์แก่ทุกคน ✨</p>
+        </footer>
 
-<div class="arrow">→</div>
+    </div>
 
-</a>
+    <!-- สคริปต์สลับธีมอย่างง่าย -->
+    <script>
+        const themeToggle = document.getElementById('themeToggle');
+        const body = document.body;
 
-<a class="card"
-href="https://ackajitto.github.io/dharma_prayer/"
-target="_blank">
+        // ฟังก์ชันตรวจสอบและตั้งค่าเริ่มต้นตามเวลาเครื่องหรือระบบผู้ใช้
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            body.classList.add('dark-theme');
+            themeToggle.textContent = '🌙';
+        }
 
-<div class="icon">📖</div>
-
-<div class="content">
-<h2>บทสวดมนต์</h2>
-<p>
-รวมบทสวดมนต์และบทแผ่เมตตา
-เปิดอ่านได้ทุกที่
-</p>
-</div>
-
-<div class="arrow">→</div>
-
-</a>
-
-<a class="card"
-href="https://ackajitto.github.io/lamp-days/"
-target="_blank">
-
-<div class="icon">🔥</div>
-
-<div class="content">
-<h2>นับวันถวายประทีป</h2>
-<p>
-ติดตามจำนวนวันถวายประทีป
-อย่างต่อเนื่อง
-</p>
-</div>
-
-<div class="arrow">→</div>
-
-</a>
-
-<div class="section-title">
-🛠️ เครื่องมือออนไลน์
-</div>
-
-<a class="card"
-href="https://ackajitto.github.io/pdf-to-image-hd/"
-target="_blank">
-
-<div class="icon">🖼️</div>
-
-<div class="content">
-<h2>PDF to Image HD</h2>
-<p>
-แปลงไฟล์ PDF
-เป็นรูปภาพคุณภาพสูง
-</p>
-</div>
-
-<div class="arrow">→</div>
-
-</a>
-
-<div class="section-title">
-🌐 ช่องทางอื่น ๆ
-</div>
-
-<div class="socials">
-
-<a class="social-btn" href="#">
-📘
-</a>
-
-<a class="social-btn" href="#">
-▶️
-</a>
-
-<a class="social-btn" href="#">
-🎵
-</a>
-
-<a class="social-btn" href="#">
-💬
-</a>
-
-</div>
-
-<div class="footer">
-✨ สร้างด้วยความตั้งใจเพื่อแบ่งปันประโยชน์แก่ทุกคน ✨
-</div>
-
-</div>
-
+        themeToggle.addEventListener('click', () => {
+            body.classList.toggle('dark-theme');
+            
+            // สลับข้อความ/ไอคอนปุ่มตามสถานะของธีม
+            if (body.classList.contains('dark-theme')) {
+                themeToggle.textContent = '🌙';
+            } else {
+                themeToggle.textContent = '☀️';
+            }
+        });
+    </script>
 </body>
 </html>
