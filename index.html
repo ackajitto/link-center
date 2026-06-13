@@ -3,354 +3,102 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>รวมเว็บแอปและเครื่องมือออนไลน์</title>
-    
+    <title>Ackajitto | Portal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
+    
     <style>
-        /* จัดตั้งค่าตัวแปร (CSS Variables) สำหรับธีมสว่างและธีมมืด */
-        :root {
-            --bg-gradient: linear-gradient(135deg, #eef9ff, #ffffff, #fff8e8);
-            --text-main: #1f2937;
-            --text-muted: #64748b;
-            --card-bg: rgba(255, 255, 255, 0.65);
-            --card-border: rgba(255, 255, 255, 0.5);
-            --shadow-sm: 0 10px 30px rgba(0, 0, 0, 0.06);
-            --shadow-md: 0 18px 40px rgba(0, 0, 0, 0.12);
-            --accent-color: #d4af37;
-            --toggle-bg: rgba(255, 255, 255, 0.8);
-            --toggle-border: rgba(0, 0, 0, 0.1);
-        }
-
-        /* ธีมมืด (Dark Mode) จะเปิดใช้งานเมื่อใส่คลาส .dark-theme ที่ body */
-        body.dark-theme {
-            --bg-gradient: linear-gradient(135deg, #0f172a, #1e293b, #111827);
-            --text-main: #f8fafc;
-            --text-muted: #94a3b8;
-            --card-bg: rgba(30, 41, 59, 0.7);
-            --card-border: rgba(255, 255, 255, 0.08);
-            --shadow-sm: 0 10px 30px rgba(0, 0, 0, 0.3);
-            --shadow-md: 0 18px 40px rgba(0, 0, 0, 0.5);
-            --toggle-bg: rgba(30, 41, 59, 0.8);
-            --toggle-border: rgba(255, 255, 255, 0.1);
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Noto Sans Thai', sans-serif;
-            transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease;
-        }
-
         body {
-            background: var(--bg-gradient);
+            font-family: 'Noto Sans Thai', sans-serif;
+            /* ตั้งค่าพื้นหลังด้วย Image.png */
+            background-image: url('Image.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
             min-height: 100vh;
-            padding: 20px;
-            overflow-x: hidden;
-            color: var(--text-main);
         }
-
-        /* จัดหน้าให้อยู่กึ่งกลางจออย่างสวยงามทั้งมือถือและเดสก์ท็อป */
-        .container {
-            max-width: 480px;
-            margin: auto;
-            position: relative;
-        }
-
-        /* ปุ่มสลับโหมดลอยตัวที่มุมขวาบน */
-        .theme-toggle-btn {
-            position: absolute;
-            top: 20px;
-            right: 10px;
-            width: 44px;
-            height: 44px;
-            border-radius: 50%;
-            border: 1px solid var(--card-border);
-            background: var(--card-bg);
-            box-shadow: var(--shadow-sm);
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 20px;
-            z-index: 10;
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-        }
-
-        .theme-toggle-btn:hover {
-            transform: scale(1.05);
-        }
-
-        .hero {
-            text-align: center;
-            padding: 50px 20px 35px;
-            position: relative;
-        }
-
-        .crystal {
-            font-size: 90px;
-            animation: float 4s ease-in-out infinite;
-            filter: drop-shadow(0 0 25px rgba(120, 200, 255, 0.45));
-            display: inline-block;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-12px); }
-        }
-
-        .hero h1 {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: var(--text-main);
-            margin-top: 10px;
-        }
-
-        .hero p {
-            margin-top: 10px;
-            color: var(--text-muted);
-            line-height: 1.6;
-            font-size: .95rem;
-        }
-
-        .card {
-            display: flex;
-            align-items: center;
-            gap: 18px;
-            padding: 18px;
-            margin-bottom: 18px;
-            background: var(--card-bg);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid var(--card-border);
-            border-radius: 24px;
-            text-decoration: none;
-            box-shadow: var(--shadow-sm);
-            transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
-        }
-
-        .card:hover {
-            transform: translateY(-4px);
-            box-shadow: var(--shadow-md);
-        }
-
-        .icon {
-            font-size: 58px;
-            flex-shrink: 0;
-            user-select: none;
-        }
-
-        .content {
-            flex: 1;
-        }
-
-        .content h2 {
-            font-size: 1.08rem;
-            color: var(--text-main);
-            margin-bottom: 6px;
-        }
-
-        .content p {
-            font-size: .9rem;
-            color: var(--text-muted);
-            line-height: 1.5;
-        }
-
-        .arrow {
-            font-size: 26px;
-            color: var(--accent-color);
-            font-weight: bold;
-            transition: transform 0.2s;
-        }
-
-        .card:hover .arrow {
-            transform: translateX(4px);
-        }
-
-        .section-title {
-            margin: 25px 0 18px;
-            padding-left: 8px;
-            font-size: 1rem;
-            font-weight: 700;
-            color: var(--text-muted);
-            letter-spacing: 0.5px;
-        }
-
-        .footer {
-            margin-top: 40px;
-            text-align: center;
-            color: var(--text-muted);
-            font-size: .85rem;
-            padding-bottom: 30px;
-        }
-
-        .socials {
-            display: flex;
-            justify-content: center;
-            gap: 14px;
-            margin-top: 15px;
-            flex-wrap: wrap;
-        }
-
-        .social-btn {
-            width: 52px;
-            height: 52px;
-            border-radius: 50%;
-            background: var(--card-bg);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border: 1px solid var(--card-border);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-decoration: none;
-            font-size: 24px;
-            box-shadow: var(--shadow-sm);
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-
-        .social-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: var(--shadow-md);
-        }
-
-        /* แสง Glow ด้านหลังสำหรับการสร้างมิติ */
-        .glow {
-            position: fixed;
-            width: 350px;
-            height: 350px;
-            background: #b8e6ff;
-            filter: blur(130px);
-            opacity: .25;
-            top: -100px;
-            right: -100px;
-            z-index: -1;
-            pointer-events: none;
-        }
-
-        .glow2 {
-            position: fixed;
-            width: 300px;
-            height: 300px;
-            background: #ffe8a3;
-            filter: blur(120px);
-            opacity: .2;
-            bottom: -100px;
-            left: -100px;
-            z-index: -1;
-            pointer-events: none;
+        
+        /* Glassmorphism Effect */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
         }
     </style>
 </head>
-<body>
+<body class="flex items-center justify-center min-h-screen p-4 md:p-8">
 
-    <!-- แสงเรืองรองฉากหลัง -->
-    <div class="glow" aria-hidden="true"></div>
-    <div class="glow2" aria-hidden="true"></div>
-
-    <div class="container">
+    <div class="glass-card w-full max-w-2xl rounded-[40px] p-6 md:p-10 shadow-2xl">
         
-        <!-- ปุ่มสลับโหมด สว่าง / มืด -->
-        <button class="theme-toggle-btn" id="themeToggle" aria-label="สลับโหมดมืดและสว่าง">
-            ☀️
-        </button>
-
-        <!-- ส่วนต้อนรับ (Hero Section) -->
-        <header class="hero">
-            <div class="crystal" role="img" aria-label="ประกายระยิบระยับ">✨</div>
-            <h1>รวมเว็บแอปและเครื่องมือออนไลน์</h1>
-            <p>เพื่อการปฏิบัติธรรม<br>และการใช้งานในชีวิตประจำวัน</p>
+        <!-- Header -->
+        <header class="text-center mb-8">
+            <div class="inline-block p-4 rounded-full bg-blue-100/50 mb-4">
+                <span class="text-4xl">💠</span>
+            </div>
+            <h1 class="text-3xl font-bold text-gray-800">Ackajitto</h1>
+            <p class="text-gray-600 mt-2">รวมเว็บแอปและเครื่องมือออนไลน์</p>
         </header>
 
+        <!-- Search Bar -->
+        <div class="mb-8">
+            <div class="relative">
+                <input type="text" placeholder="Search..." class="w-full py-3 px-6 rounded-full bg-white/60 border border-white/50 focus:outline-none focus:ring-2 focus:ring-blue-400 transition-all">
+                <span class="absolute right-4 top-3 text-gray-400">🔍</span>
+            </div>
+        </div>
+
         <main>
-            <!-- กลุ่มแอปธรรมะ -->
-            <section aria-labelledby="dhamma-apps-title">
-                <h2 class="section-title" id="dhamma-apps-title">🧘 เว็บแอปธรรมะ</h2>
-
-                <a class="card" href="https://ackajitto.github.io/meditation-timer/" target="_blank" rel="noopener">
-                    <div class="icon" role="img" aria-label="แอปสมาธิ">🧘</div>
-                    <div class="content">
-                        <h2>จับเวลานั่งสมาธิ</h2>
-                        <p>บันทึกเวลาและติดตามการนั่งสมาธิ ใช้งานง่ายบนมือถือ</p>
+            <h2 class="text-lg font-semibold text-gray-700 mb-4 flex items-center">
+                <span class="mr-2">🧘</span> เว็บแอปธรรมะ
+            </h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+                <a href="https://ackajitto.github.io/meditation-timer/" target="_blank" class="bg-white/40 p-4 rounded-2xl hover:bg-white/60 transition-all border border-white/30 flex items-center gap-4">
+                    <span class="text-3xl">⏱️</span>
+                    <div>
+                        <h3 class="font-bold text-gray-800">Meditation Timer</h3>
+                        <p class="text-sm text-gray-600">บันทึกเวลาและติดตามการนั่งสมาธิ</p>
                     </div>
-                    <div class="arrow" aria-hidden="true">→</div>
                 </a>
-
-                <a class="card" href="https://ackajitto.github.io/dharma_prayer/" target="_blank" rel="noopener">
-                    <div class="icon" role="img" aria-label="แอปบทสวดมนต์">📖</div>
-                    <div class="content">
-                        <h2>บทสวดมนต์</h2>
-                        <p>รวมบทสวดมนต์และบทแผ่เมตตา เปิดอ่านได้ทุกที่</p>
+                <a href="https://ackajitto.github.io/dharma_prayer/" target="_blank" class="bg-white/40 p-4 rounded-2xl hover:bg-white/60 transition-all border border-white/30 flex items-center gap-4">
+                    <span class="text-3xl">📖</span>
+                    <div>
+                        <h3 class="font-bold text-gray-800">บทสวดมนต์</h3>
+                        <p class="text-sm text-gray-600">รวมบทสวดมนต์และบทแผ่เมตตา</p>
                     </div>
-                    <div class="arrow" aria-hidden="true">→</div>
                 </a>
-
-                <a class="card" href="https://ackajitto.github.io/lamp-days/" target="_blank" rel="noopener">
-                    <div class="icon" role="img" aria-label="แอปวันถวายประทีป">🔥</div>
-                    <div class="content">
-                        <h2>นับวันถวายประทีป</h2>
-                        <p>ติดตามจำนวนวันถวายประทีป อย่างต่อเนื่อง</p>
+                <a href="https://ackajitto.github.io/lamp-days/" target="_blank" class="bg-white/40 p-4 rounded-2xl hover:bg-white/60 transition-all border border-white/30 flex items-center gap-4">
+                    <span class="text-3xl">🔥</span>
+                    <div>
+                        <h3 class="font-bold text-gray-800">วันถวายประทีป</h3>
+                        <p class="text-sm text-gray-600">ติดตามจำนวนวันถวายประทีป</p>
                     </div>
-                    <div class="arrow" aria-hidden="true">→</div>
                 </a>
-            </section>
+            </div>
 
-            <!-- กลุ่มเครื่องมือ -->
-            <section aria-labelledby="tools-title">
-                <h2 class="section-title" id="tools-title">🛠️ เครื่องมือออนไลน์</h2>
-
-                <a class="card" href="https://ackajitto.github.io/pdf-to-image-hd/" target="_blank" rel="noopener">
-                    <div class="icon" role="img" aria-label="เครื่องมือแปลงไฟล์">🖼️</div>
-                    <div class="content">
-                        <h2>PDF to Image HD</h2>
-                        <p>แปลงไฟล์ PDF เป็นรูปภาพคุณภาพสูง</p>
+            <h2 class="text-lg font-semibold text-gray-700 mb-4 flex items-center">
+                <span class="mr-2">🛠️</span> เครื่องมือออนไลน์
+            </h2>
+            <div class="grid grid-cols-1 gap-4">
+                <a href="https://ackajitto.github.io/pdf-to-image-hd/" target="_blank" class="bg-white/40 p-4 rounded-2xl hover:bg-white/60 transition-all border border-white/30 flex items-center gap-4">
+                    <span class="text-3xl">🖼️</span>
+                    <div>
+                        <h3 class="font-bold text-gray-800">PDF to Image HD</h3>
+                        <p class="text-sm text-gray-600">แปลงไฟล์ PDF เป็นรูปภาพคุณภาพสูง</p>
                     </div>
-                    <div class="arrow" aria-hidden="true">→</div>
                 </a>
-            </section>
-
-            <!-- ลิงก์สังคมออนไลน์ -->
-            <section aria-labelledby="socials-title">
-                <h2 class="section-title" id="socials-title">🌐 ช่องทางอื่น ๆ</h2>
-                <div class="socials">
-                    <a class="social-btn" href="#" aria-label="Facebook">📘</a>
-                    <a class="social-btn" href="#" aria-label="YouTube">▶️</a>
-                    <a class="social-btn" href="#" aria-label="TikTok">🎵</a>
-                    <a class="social-btn" href="#" aria-label="Line">💬</a>
-                </div>
-            </section>
+            </div>
         </main>
 
-        <!-- ท้ายเพจ -->
-        <footer class="footer">
-            <p>✨ สร้างด้วยความตั้งใจเพื่อแบ่งปันประโยชน์แก่ทุกคน ✨</p>
+        <footer class="mt-10 pt-6 border-t border-gray-200/50 flex justify-center gap-6">
+            <a href="#" class="text-2xl hover:scale-110 transition-transform">🐙</a>
+            <a href="#" class="text-2xl hover:scale-110 transition-transform">📸</a>
+            <a href="#" class="text-2xl hover:scale-110 transition-transform">🐦</a>
+            <a href="#" class="text-2xl hover:scale-110 transition-transform">💬</a>
         </footer>
-
     </div>
 
-    <!-- สคริปต์สลับธีมอย่างง่าย -->
-    <script>
-        const themeToggle = document.getElementById('themeToggle');
-        const body = document.body;
-
-        // ฟังก์ชันตรวจสอบและตั้งค่าเริ่มต้นตามเวลาเครื่องหรือระบบผู้ใช้
-        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-            body.classList.add('dark-theme');
-            themeToggle.textContent = '🌙';
-        }
-
-        themeToggle.addEventListener('click', () => {
-            body.classList.toggle('dark-theme');
-            
-            // สลับข้อความ/ไอคอนปุ่มตามสถานะของธีม
-            if (body.classList.contains('dark-theme')) {
-                themeToggle.textContent = '🌙';
-            } else {
-                themeToggle.textContent = '☀️';
-            }
-        });
-    </script>
 </body>
 </html>
