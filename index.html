@@ -10,7 +10,6 @@
     <style>
         body {
             font-family: 'Noto Sans Thai', sans-serif;
-            /* ตั้งค่าพื้นหลังด้วย Image.png */
             background-image: url('Image.png');
             background-size: cover;
             background-position: center;
@@ -19,9 +18,8 @@
             min-height: 100vh;
         }
         
-        /* Glassmorphism Effect */
         .glass-card {
-            background: rgba(255, 255, 255, 0.75);
+            background: rgba(255, 255, 255, 0.7);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
             border: 1px solid rgba(255, 255, 255, 0.3);
@@ -92,11 +90,19 @@
             </div>
         </main>
 
-        <footer class="mt-10 pt-6 border-t border-gray-200/50 flex justify-center gap-6">
-            <a href="#" class="text-2xl hover:scale-110 transition-transform">🐙</a>
-            <a href="#" class="text-2xl hover:scale-110 transition-transform">📸</a>
-            <a href="#" class="text-2xl hover:scale-110 transition-transform">🐦</a>
-            <a href="#" class="text-2xl hover:scale-110 transition-transform">💬</a>
+        <footer class="mt-10 pt-6 border-t border-gray-200/50 text-center">
+            <div class="flex justify-center gap-6 mb-4">
+                <a href="#" class="text-2xl hover:scale-110 transition-transform">🐙</a>
+                <a href="#" class="text-2xl hover:scale-110 transition-transform">📸</a>
+                <a href="#" class="text-2xl hover:scale-110 transition-transform">🐦</a>
+                <a href="#" class="text-2xl hover:scale-110 transition-transform">💬</a>
+            </div>
+            <p class="text-gray-500 text-sm">
+                © 2026 Ackajitto. All rights reserved. 
+            </p>
+            <p class="text-gray-400 text-xs mt-1">
+                Designed with ✨ for the community.
+            </p>
         </footer>
     </div>
 
