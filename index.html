@@ -16,23 +16,58 @@
             background-attachment: fixed;
             background-repeat: no-repeat;
             min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
         }
-        
+
+        /* การปรับใช้ CSS Glassmorphism ใหม่ของคุณ */
         .glass-card {
-            background: rgba(255, 255, 255, 0.7);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
+            background: rgba(255, 255, 255, 0.37);
+            backdrop-filter: blur(13px);
+            -webkit-backdrop-filter: blur(13px);
+            border-radius: 20px;
             border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 
+                0 8px 32px rgba(0, 0, 0, 0.1),
+                inset 0 1px 0 rgba(255, 255, 255, 0.5),
+                inset 0 -1px 0 rgba(255, 255, 255, 0.1),
+                inset 0 0 28px 14px rgba(255, 255, 255, 0.2); /* ปรับความสว่าง inset ลงเล็กน้อยเพื่อให้อ่านตัวหนังสือได้ */
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+
+        .glass-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.8), transparent);
+        }
+
+        .glass-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 1px;
+            height: 100%;
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.8), transparent, rgba(255, 255, 255, 0.3));
         }
     </style>
 </head>
-<body class="flex items-center justify-center min-h-screen p-4 md:p-8">
+<body>
 
-    <div class="glass-card w-full max-w-2xl rounded-[40px] p-6 md:p-10 shadow-2xl">
+    <!-- Main Container -->
+    <div class="glass-card w-full max-w-2xl p-6 md:p-10 shadow-2xl">
         
         <!-- Header -->
         <header class="text-center mb-8">
-            <div class="inline-block p-4 rounded-full bg-blue-100/50 mb-4">
+            <div class="inline-block p-4 rounded-full bg-blue-100/30 mb-4 backdrop-blur-sm">
                 <span class="text-4xl">💠</span>
             </div>
             <h1 class="text-3xl font-bold text-gray-800">Ackajitto</h1>
@@ -42,8 +77,8 @@
         <!-- Search Bar -->
         <div class="mb-8">
             <div class="relative">
-                <input type="text" placeholder="Search..." class="w-full py-3 px-6 rounded-full bg-white/60 border border-white/50 focus:outline-none focus:ring-2 focus:ring-blue-400 transition-all">
-                <span class="absolute right-4 top-3 text-gray-400">🔍</span>
+                <input type="text" placeholder="Search..." class="w-full py-3 px-6 rounded-full bg-white/40 border border-white/50 focus:outline-none focus:ring-2 focus:ring-blue-400 transition-all backdrop-blur-md">
+                <span class="absolute right-4 top-3 text-gray-600">🔍</span>
             </div>
         </div>
 
@@ -53,25 +88,25 @@
             </h2>
             
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
-                <a href="https://ackajitto.github.io/meditation-timer/" target="_blank" class="bg-white/40 p-4 rounded-2xl hover:bg-white/60 transition-all border border-white/30 flex items-center gap-4">
+                <a href="https://ackajitto.github.io/meditation-timer/" target="_blank" class="glass-card p-4 hover:scale-[1.02] transition-all flex items-center gap-4 text-gray-800 no-underline">
                     <span class="text-3xl">⏱️</span>
                     <div>
-                        <h3 class="font-bold text-gray-800">Meditation Timer</h3>
-                        <p class="text-sm text-gray-600">บันทึกเวลาและติดตามการนั่งสมาธิ</p>
+                        <h3 class="font-bold">Meditation Timer</h3>
+                        <p class="text-sm text-gray-700">บันทึกเวลาและติดตามการนั่งสมาธิ</p>
                     </div>
                 </a>
-                <a href="https://ackajitto.github.io/dharma_prayer/" target="_blank" class="bg-white/40 p-4 rounded-2xl hover:bg-white/60 transition-all border border-white/30 flex items-center gap-4">
+                <a href="https://ackajitto.github.io/dharma_prayer/" target="_blank" class="glass-card p-4 hover:scale-[1.02] transition-all flex items-center gap-4 text-gray-800 no-underline">
                     <span class="text-3xl">📖</span>
                     <div>
-                        <h3 class="font-bold text-gray-800">บทสวดมนต์</h3>
-                        <p class="text-sm text-gray-600">รวมบทสวดมนต์และบทแผ่เมตตา</p>
+                        <h3 class="font-bold">บทสวดมนต์</h3>
+                        <p class="text-sm text-gray-700">รวมบทสวดมนต์และบทแผ่เมตตา</p>
                     </div>
                 </a>
-                <a href="https://ackajitto.github.io/lamp-days/" target="_blank" class="bg-white/40 p-4 rounded-2xl hover:bg-white/60 transition-all border border-white/30 flex items-center gap-4">
+                <a href="https://ackajitto.github.io/lamp-days/" target="_blank" class="glass-card p-4 hover:scale-[1.02] transition-all flex items-center gap-4 text-gray-800 no-underline">
                     <span class="text-3xl">🔥</span>
                     <div>
-                        <h3 class="font-bold text-gray-800">วันถวายประทีป</h3>
-                        <p class="text-sm text-gray-600">ติดตามจำนวนวันถวายประทีป</p>
+                        <h3 class="font-bold">วันถวายประทีป</h3>
+                        <p class="text-sm text-gray-700">ติดตามจำนวนวันถวายประทีป</p>
                     </div>
                 </a>
             </div>
@@ -80,28 +115,25 @@
                 <span class="mr-2">🛠️</span> เครื่องมือออนไลน์
             </h2>
             <div class="grid grid-cols-1 gap-4">
-                <a href="https://ackajitto.github.io/pdf-to-image-hd/" target="_blank" class="bg-white/40 p-4 rounded-2xl hover:bg-white/60 transition-all border border-white/30 flex items-center gap-4">
+                <a href="https://ackajitto.github.io/pdf-to-image-hd/" target="_blank" class="glass-card p-4 hover:scale-[1.02] transition-all flex items-center gap-4 text-gray-800 no-underline">
                     <span class="text-3xl">🖼️</span>
                     <div>
-                        <h3 class="font-bold text-gray-800">PDF to Image HD</h3>
-                        <p class="text-sm text-gray-600">แปลงไฟล์ PDF เป็นรูปภาพคุณภาพสูง</p>
+                        <h3 class="font-bold">PDF to Image HD</h3>
+                        <p class="text-sm text-gray-700">แปลงไฟล์ PDF เป็นรูปภาพคุณภาพสูง</p>
                     </div>
                 </a>
             </div>
         </main>
 
-        <footer class="mt-10 pt-6 border-t border-gray-200/50 text-center">
+        <footer class="mt-10 pt-6 border-t border-white/20 text-center">
             <div class="flex justify-center gap-6 mb-4">
                 <a href="#" class="text-2xl hover:scale-110 transition-transform">🐙</a>
                 <a href="#" class="text-2xl hover:scale-110 transition-transform">📸</a>
                 <a href="#" class="text-2xl hover:scale-110 transition-transform">🐦</a>
                 <a href="#" class="text-2xl hover:scale-110 transition-transform">💬</a>
             </div>
-            <p class="text-gray-500 text-sm">
+            <p class="text-gray-700 text-sm">
                 © 2026 Ackajitto. All rights reserved. 
-            </p>
-            <p class="text-gray-400 text-xs mt-1">
-                Designed with ✨ for the community.
             </p>
         </footer>
     </div>
